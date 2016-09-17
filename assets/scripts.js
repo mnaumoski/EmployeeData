@@ -21,11 +21,6 @@ $('#submitData').on('click', function() {
   empMonthlyRate = $('#monthlyRate').val().trim();
   empStartDate = $('#startDate').val().trim(); 
 
-  console.log(empName);
-  console.log(empRole);
-  console.log(empMonthlyRate);
-  console.log(empStartDate);
-
   database.ref().push({
     empStartDate: empStartDate,
     name: empName,
@@ -34,44 +29,56 @@ $('#submitData').on('click', function() {
     dataAdded: firebase.database.ServerValue.TIMESTAMP
   })
 
-  // console.log(key);
-  printEmployees();
   return false;
 })
 
-//do this when child added to array
-/*dataRef.ref().on("child_added", function(childSnapshot) {
 
-}*/
+function printEmployees(empName, empRole,empMonthlyRate,empStartDate) {
+  console.log("Printing employees");
+  var list = $('<table>');
+  var printName = $('<td>');
+  printName.append(empName);
+  list.append(printName);
+
+  var printRole = $('<td>');
+  printRole.append(empRole);
+  list.append(printRole);
+
+  var printStartDate = $('<td>');
+  printStartDate.append(empStartDate);
+  list.append(printStartDate);
+
+  var printRate = $('<td>');
+  printRate.append(empMonthlyRate);
+  list.append(printRate);
+
+  $('#empList').append(list);
+}
+
+// Create Firebase "watcher" (.on("value"))
+database.ref().on("child_added", function(snapshot) {
+  
+  console.log(snapshot.val());
+
+  empName = snapshot.val().name;
+  empRole = snapshot.val().empRole;
+  empMonthlyRate = snapshot.val().empMonthlyRate;
+  empStartDate = snapshot.val().empStartDate; 
+  printEmployees(empName, empRole,empMonthlyRate,empStartDate);
+
+  // Create Error Handling
+}, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
 
 //do this to pull the most recent user
 // dataRef.ref().orderByChild("dateAdded".limitToLast(1)).on("child_added", function(snapshot) {
   
 // }
 
-function printEmployees() {
-  console.log("Printing employees");
-  var list = $('<ul>');
-  var printName = $('<li>');
-  printName.append(empName);
-  list.append(printName);
+//do this when child added to array
+/*dataRef.ref().on("child_added", function(childSnapshot) {
 
-  var printRole = $('<li>');
-  printRole.append(empRole);
-  list.append(printRole);
+}*/
 
-  var printStartDate = $('<li>');
-  printStartDate.append(empStartDate);
-  list.append(printStartDate);
-
-  var printRate = $('<li>');
-  printRate.append(empMonthlyRate);
-  list.append(printRate);
-
-
-
-  $('#empList').append(list);
-
-
-
-}
