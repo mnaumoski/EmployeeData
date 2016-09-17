@@ -30,8 +30,48 @@ $('#submitData').on('click', function() {
     empStartDate: empStartDate,
     name: empName,
     empRole: empRole,
-    empMonthlyRate: empMonthlyRate
+    empMonthlyRate: empMonthlyRate,
+    dataAdded: firebase.database.ServerValue.TIMESTAMP
   })
 
-    return false;
+  // console.log(key);
+  printEmployees();
+  return false;
 })
+
+//do this when child added to array
+/*dataRef.ref().on("child_added", function(childSnapshot) {
+
+}*/
+
+//do this to pull the most recent user
+// dataRef.ref().orderByChild("dateAdded".limitToLast(1)).on("child_added", function(snapshot) {
+  
+// }
+
+function printEmployees() {
+  console.log("Printing employees");
+  var list = $('<ul>');
+  var printName = $('<li>');
+  printName.append(empName);
+  list.append(printName);
+
+  var printRole = $('<li>');
+  printRole.append(empRole);
+  list.append(printRole);
+
+  var printStartDate = $('<li>');
+  printStartDate.append(empStartDate);
+  list.append(printStartDate);
+
+  var printRate = $('<li>');
+  printRate.append(empMonthlyRate);
+  list.append(printRate);
+
+
+
+  $('#empList').html(list);
+
+
+
+}
