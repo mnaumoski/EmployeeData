@@ -70,7 +70,7 @@ function printEmployees() {
 
 
 
-  $('#empList').html(list);
+  $('#empList').append(list);
 
 
 
