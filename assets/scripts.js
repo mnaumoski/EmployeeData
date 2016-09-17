@@ -13,6 +13,7 @@ var empName;
 var empRole;
 var empMonthlyRate;
 var empStartDate;
+var tablePrinted = "false";
 
 $('#submitData').on('click', function() {
 
@@ -34,7 +35,33 @@ $('#submitData').on('click', function() {
 
 
 function printEmployees(empName, empRole,empMonthlyRate,empStartDate) {
-  console.log("Printing employees");
+
+  if (tablePrinted == "false") {
+    var tableHeader = $('<table>');
+    var printName = $('<td>');
+    var printRole = $('<td>');
+    var printStartDate = $('<td>');
+    var printRate = $('<td>'); 
+    var monthsEmployed = $('<td>');
+    var totalBilled = $('<td>'); 
+    printName.append("Employee Name");
+    printRole.append("Employee Role");
+    printStartDate.append("Start Date");
+    printRate.append("Rate");
+    monthsEmployed.append("Months Employed");
+    totalBilled.append("Total Billed");
+    tableHeader.append(printName);
+    tableHeader.append(printRole);
+    tableHeader.append(printStartDate);
+    tableHeader.append(printRate);
+    tableHeader.append(monthsEmployed);
+    tableHeader.append(totalBilled);
+    tablePrinted = "true";
+  }
+
+
+  $('#empList').append(tableHeader);
+
   var list = $('<table>');
   var printName = $('<td>');
   printName.append(empName);
@@ -52,6 +79,14 @@ function printEmployees(empName, empRole,empMonthlyRate,empStartDate) {
   printRate.append(empMonthlyRate);
   list.append(printRate);
 
+  var printMonthlyRate = $('<td>');
+  printMonthlyRate.append("date");
+  list.append(printMonthlyRate);
+
+  var printBilled = $('<td>');
+  printBilled.append("$50");
+  list.append(printBilled);
+
   $('#empList').append(list);
 <<<<<<< HEAD
 
@@ -62,8 +97,6 @@ function printEmployees(empName, empRole,empMonthlyRate,empStartDate) {
 // Create Firebase "watcher" (.on("value"))
 database.ref().on("child_added", function(snapshot) {
   
-  console.log(snapshot.val());
-
   empName = snapshot.val().name;
   empRole = snapshot.val().empRole;
   empMonthlyRate = snapshot.val().empMonthlyRate;
