@@ -1,49 +1,3 @@
-<<<<<<< HEAD
-
-  var empName ;
-  var empRole ;
-  var empMonthlyRate;
-  var empStartDate=0;
-
-  // Initialize Firebase
- var config = {
-   apiKey: "AIzaSyBMiMqCuAuxhbqQl_bFhkevI6pycmSGiFs",
-   authDomain: "employeedata-b4a7e.firebaseapp.com",
-   databaseURL: "https://employeedata-b4a7e.firebaseio.com",
-   storageBucket: "employeedata-b4a7e.appspot.com",
-   messagingSenderId: "669041241216"
- };
- firebase.initializeApp(config);
-
-
-
-$('#submitData').on('click', function() {
-   empName = $('#name').val().trim();
-   empRole = $('#empRole').val().trim();
-   empMonthlyRate = $('#monthlyRate').val().trim();
-   empStartDate = $('#startDate').val().trim(); 
-
-  console.log(empName);
-  console.log(empRole);
-  console.log(empMonthlyRate);
-  console.log(empStartDate);
-  
-   database.ref().push({
-     name: empName,
-     empRole: empRole,
-     empMonthlyRate: empMonthlyRate,
-     empStartDate: empStartDate
-   })
-return false;
-});
-
-
-
-
-
-
-
-=======
 <!DOCTYPE html>
 <html>
 
@@ -55,40 +9,46 @@ return false;
         <div class="container">
             <div class="jumbotron">
                 <div class="container-flow">
-                    Employee Data Management
+                    <h1> Employee Data Management</h1>
+                    <h3>Comprehensive Directory of Employee Billable Hours</h3>
                 </div>
             </div>
-            <ul class="list-group">
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-                <li class="list-group-item"></li>
-            </ul>
-            <form>
-                <div class="form-group">
-                    <label for="name">Name: </label>
-                    <input type="text" class="form-control" id="name" placeholder="name">
+            <div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                <strong>Current Employee</strong></div>
+                <div class="panel-body" id="empList">
                 </div>
-                <div class="form-group">
-                    <label for="role">Position:</label>
-                    <input type="text" class="form-control" id="empRole" placeholder="role">
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Add Employee</strong></div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name: </label>
+                            <input type="text" class="form-control" id="name" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="empRole">Position:</label>
+                            <input type="text" class="form-control" id="empRole" placeholder="role">
+                        </div>
+                        <div class="form-group">
+                            <label for="startDate">Start Date (DD/MM/YY -ex: 01/01/2003) </label>
+                            <input type="text" class="form-control" id="startDate" placeholder="input start date">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyRate">Monthly Rate:</label>
+                            <input type="text" class="form-control" id="monthlyRate" placeholder="write monthly rate">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitData">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="startdate">Start Date:</label>
-                    <input type="text" class="form-control" id="startDate" placeholder="startDate">
-                </div>
-                <div class="form-group">
-                    <label for="inputmonthly">Monthly Rate:</label>
-                    <input type="text" class="form-control" id="monthlyRate" placeholder="inputmonthly">
-                </div>
-                <button type="submit" class="btn btn-default" id="submitData">Submit</button>
-            </form>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-        <script src="/assets/script.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="assets/scripts.js" type="text/javascript" charset="utf-8" async defer></script>
     </body>
 
 </html>
->>>>>>> 29a4defceb658befef60bafcf999d1291bdc76d6
