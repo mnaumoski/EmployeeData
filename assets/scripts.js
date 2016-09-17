@@ -19,7 +19,7 @@ $('#submitData').on('click', function() {
   empName = $('#name').val().trim();
   empRole = $('#empRole').val().trim();
   empMonthlyRate = $('#monthlyRate').val().trim();
-  empStartDate = $('#startDate').val().trim(); 
+  empStartDate = $('#startDate').val().trim();
 
   console.log(empName);
   console.log(empRole);
@@ -68,10 +68,6 @@ function printEmployees() {
   printRate.append(empMonthlyRate);
   list.append(printRate);
 
-
-
   $('#empList').append(list);
-
-
 
 }
